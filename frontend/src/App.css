@@ -3,17 +3,28 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --htv-black: #000000;
+  --htv-yellow: #FFD700;
+  --htv-blue: #7a73e4;
+  --htv-chat: #e26a33;
+  --htv-red: #ff0000;
+  --htv-dark-yellow: #DAA520;
+  --htv-light-gray: #2C2C2C;
+  --htv-dark-gray: #1a1a1a;
+  --htv-darker-gray: #141414;
 }
 
 .logo {
-  /* height: 6em; */
+  height: 2.5em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -26,4 +37,109 @@
 
 .card {
   padding: 2em;
+}
+
+/* Desktop layout */
+.app-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  /* fixed on desktop */
+  width: 200px;
+  top: 60px;
+  /* below top-bar */
+  left: 0;
+  height: calc(100vh - 60px);
+  background-color: var(--htv-black);
+  border-right: 1px solid var(--htv-yellow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  z-index: 999;
+}
+
+/* Content next to sidebar */
+.content-area {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  max-width: 1024px;
+  margin-right: auto;
+  margin-left: 200px;
+  /* offset content for fixed sidebar */
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    /* stack in document flow */
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    /* horizontal */
+    justify-content: space-around;
+    /* space buttons evenly */
+    padding: 10px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--htv-yellow);
+  }
+
+  .sidebar button {
+    flex: 1;
+    /* each button takes equal width */
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .content-area {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 10px;
+  }
+
+  .top-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 50px;
+  }
+
+  .top-bar h1 {
+    font-size: 1.2rem;
+  }
+
+  .top-bar .logo {
+    height: 30px;
+  }
+}
+
+/* Top bar styling */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: var(--htv-black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
+  border-bottom: 1px solid var(--htv-yellow);
+  box-sizing: border-box;
+}
+
+.top-bar .logo {
+  height: 40px;
 }

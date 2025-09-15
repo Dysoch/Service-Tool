@@ -1,53 +1,49 @@
-
 import { useEffect, useState } from 'react'
 import { getClients } from './services/api'
 import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
+import ContentArea from "./components/ContentArea";
+import type { TabType } from "./types/tabs";
 import './App.css'
 
 function App() {
   const [clients, setClients] = useState<{ id: number, name: string }[]>([])
-  const [activeTab, setActiveTab] = useState<string>('FAQ');
-  console.log(clients)
+  const [activeTab, setActiveTab] = useState<TabType>('FAQ')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  console.log(clients)
+  // Clients fooled. This is to fool the backend for now
   useEffect(() => {
     getClients().then(setClients);
-  }, []);
+  }, [])
 
+  // auto-switch tab on login/logout
+  useEffect(() => {
+    if (isLoggedIn && (activeTab === 'Login' || activeTab === 'Register')) {
+      // go to default logged-in page
+      setActiveTab('FAQ')
+    } else if (!isLoggedIn && activeTab === 'Logout') {
+      // go to default logged-out page
+      setActiveTab('Login')
+    }
+  }, [isLoggedIn])
+
+  // Actual content. Dynamically obviously
   return (
     <>
       <TopBar />
-      <SideBar activeTab={activeTab} onTabChange={setActiveTab} />
-      <div>
-        <a href="https://htverboom.com" target="_blank">
-          <img src="/HTV_icoontje.png" className="logo" alt="Logo" />
-        </a>
-        <a href="https://htverboom.com" target="_blank">
-          <img src="/HTV_icoontje.png" className="logo" alt="Logo" />
-        </a>
+      <div className="app-container">
+        <SideBar
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          isLoggedIn={isLoggedIn}
+        />
+        <div className="content-area">
+          <ContentArea activeTab={activeTab} setIsLoggedIn={setIsLoggedIn} />
+        </div>
       </div>
-
-      <h1>HTV Service Tool</h1>
     </>
-  );
-
-  //return (
-    //<div style={{ height: '100vh', overflow: 'hidden' }}>
-      //<TopBar />
-      //<SideBar activeTab={activeTab} onTabChange={setActiveTab} />
-      //<div style={{
-        //position: 'absolute',
-        //left: '200px',
-        //top: '60px',
-        //right: '0',
-        //bottom: '0',
-        //overflow: 'auto',
-        //backgroundColor: '#1e1e1e'
-      //}}>
-        //<ContentArea activeTab={activeTab} />
-      //</div>
-    //</div>
-  //);
+  )
 }
 
 export default App
