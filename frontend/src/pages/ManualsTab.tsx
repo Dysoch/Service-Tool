@@ -7,15 +7,15 @@ type ManualsTabProps = {
 
 export default function ManualsTab({ initialManual }: ManualsTabProps) {
   const manuals = [
-    { name: "hoofdsysteem", file: "/docs/hoofdsysteem.html" },
-    { name: "hortitrack", file: "/docs/hortitrack.html" },
-    { name: "kraan", file: "/docs/kraan.html" },
-    { name: "lift", file: "/docs/lift.html" },
-    { name: "lineair", file: "/docs/lineair.html" },
-    { name: "snel-gids", file: "/docs/snel-gids.html" },
-    { name: "stapelaar", file: "/docs/stapelaar.html" },
-    { name: "wasser-100gr", file: "/docs/wasser-100gr.html" },
-    { name: "wasser-180gr", file: "/docs/wasser-180gr.html" },
+    { name: "Hoofdsysteem", file: "/docs/hoofdsysteem.html" },
+    { name: "Hortitrack", file: "/docs/hortitrack.html" },
+    { name: "Kraan", file: "/docs/kraan.html" },
+    { name: "Lift", file: "/docs/lift.html" },
+    { name: "Lineair Robot", file: "/docs/lineair.html" },
+    { name: "Snel Gids", file: "/docs/snel-gids.html" },
+    { name: "Stapelaar", file: "/docs/stapelaar.html" },
+    { name: "Wasser 100gr", file: "/docs/wasser-100gr.html" },
+    { name: "Wasser 180gr", file: "/docs/wasser-180gr.html" },
   ];
 
   // Find file by manual name OR fallback to first

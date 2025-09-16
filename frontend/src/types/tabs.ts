@@ -11,9 +11,9 @@ export interface Tab {
 export const tabs: Tab[] = [
     { id: 'FAQ', label: 'FAQ', icon: '❓', section: 'top', visibleFor: 'loggedIn' },
     { id: 'Contact', label: 'Contact', icon: '📞', section: 'top', visibleFor: 'loggedIn' },
-    { id: 'Manuals', label: 'Manuals', icon: '📝', section: 'top', visibleFor: 'loggedIn' },
-    { id: 'Settings', label: 'Settings', icon: '⚙️', section: 'top', visibleFor: 'loggedIn' },
+    { id: 'Manuals', label: 'Handleidingen', icon: '📝', section: 'top', visibleFor: 'loggedIn' },
+    { id: 'Settings', label: 'Instellingen', icon: '⚙️', section: 'bottom', visibleFor: 'loggedIn' },
     { id: 'Register', label: 'Register', icon: '📝', section: 'bottom', visibleFor: 'loggedOut' },
     { id: 'Login', label: 'Login', icon: '🔑', section: 'bottom', visibleFor: 'loggedOut' },
-    { id: 'Logout', label: 'Logout', icon: '🚪', section: 'bottom', visibleFor: 'loggedIn' },
+    { id: 'Logout', label: 'Uitloggen', icon: '🚪', section: 'bottom', visibleFor: 'loggedIn' },
   ]
