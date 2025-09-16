@@ -1,5 +1,6 @@
 import type { TabType } from '../types/tabs'
-import ManualViewer from '../pages/manuals'
+import ManualsTab from '../pages/ManualsTab'
+import { useState } from 'react'
 
 interface ContentAreaProps {
     activeTab: TabType
@@ -7,6 +8,8 @@ interface ContentAreaProps {
 }
 
 export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaProps) {
+    const [selectedManual] = useState<string | undefined>(undefined);
+
     switch (activeTab) {
         case 'FAQ':
             return (
@@ -42,12 +45,10 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
 
         case 'Manuals':
             return (
-                <div>
-                    <h1>Manuals Page</h1>
-                    <h2>Coming Soon</h2>
-                    <ManualViewer />
+                <div style={{ padding: "20px" }}>
+                    <ManualsTab initialManual={selectedManual} />
                 </div>
-            )
+            );
 
         case 'Settings':
             return (
