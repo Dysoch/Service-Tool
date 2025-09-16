@@ -1,5 +1,7 @@
 import type { TabType } from '../types/tabs'
 import ManualsTab from '../pages/ManualsTab'
+import LoginPage from "../pages/LoginPage"
+import RegisterPage from "../pages/RegisterPage"
 import { useState } from 'react'
 
 interface ContentAreaProps {
@@ -9,6 +11,7 @@ interface ContentAreaProps {
 
 export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaProps) {
     const [selectedManual] = useState<string | undefined>(undefined);
+    const [_, setActiveTab] = useState<TabType>('Login')
 
     switch (activeTab) {
         case 'FAQ':
@@ -23,7 +26,7 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
                     }}
                 >
                     <h1>FAQ</h1>
-                    <h2>Coming Soon</h2>
+                    <h2>Coming Soon, Work in Progress</h2>
                 </div>
             )
 
@@ -39,13 +42,17 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
                     }}
                 >
                     <h1>Contact Page</h1>
-                    <h2>Coming Soon</h2>
+                    <h2>Coming Soon, Work in Progress</h2>
                 </div>
             )
 
         case 'Manuals':
             return (
-                <div style={{ padding: "20px" }}>
+                <div
+                    style={{
+                        paddingTop: '20px',
+                    }}
+                >
                     <ManualsTab initialManual={selectedManual} />
                 </div>
             );
@@ -62,59 +69,21 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
                     }}
                 >
                     <h1>Settings Page</h1>
-                    <h2>Coming Soon</h2>
+                    <h2>Coming Soon, Work in Progress</h2>
                 </div>
             )
 
-        case 'Register':
+        case "Register":
             return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
+                <RegisterPage
+                    onRegisterSuccess={() => {
+                        setActiveTab("Login") // after register, go to login page
                     }}
-                >
-                    <h1>Register Page</h1>
-                    <h2>Coming Soon</h2>
-                </div>
+                />
             )
 
         case 'Login':
-            return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
-                    }}
-                >
-                    <h1>Login Page</h1>
-                    <form
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            // TODO: replace with real auth
-                            setIsLoggedIn(true)
-                        }}
-                    >
-                        <div>
-                            <label>
-                                Username: <input type="text" />
-                            </label>
-                        </div>
-                        <div>
-                            <label>
-                                Password: <input type="password" />
-                            </label>
-                        </div>
-                        <button type="submit">Login</button>
-                    </form>
-                </div>
-            )
+            return <LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />
 
         case 'Logout':
             return (

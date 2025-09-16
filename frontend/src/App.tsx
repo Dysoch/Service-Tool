@@ -8,7 +8,7 @@ import './App.css'
 
 function App() {
   const [clients, setClients] = useState<{ id: number, name: string }[]>([])
-  const [activeTab, setActiveTab] = useState<TabType>('FAQ')
+  const [activeTab, setActiveTab] = useState<TabType>('Login')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   console.log(clients)
