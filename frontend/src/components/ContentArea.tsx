@@ -1,4 +1,5 @@
 import type { TabType } from '../types/tabs'
+import ManualViewer from '../pages/manuals'
 
 interface ContentAreaProps {
     activeTab: TabType
@@ -36,6 +37,15 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
                 >
                     <h1>Contact Page</h1>
                     <h2>Coming Soon</h2>
+                </div>
+            )
+
+        case 'Manuals':
+            return (
+                <div>
+                    <h1>Manuals Page</h1>
+                    <h2>Coming Soon</h2>
+                    <ManualViewer />
                 </div>
             )
 
