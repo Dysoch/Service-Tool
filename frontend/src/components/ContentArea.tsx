@@ -1,7 +1,5 @@
 import type { TabType } from '../types/tabs'
-import ManualsTab from '../pages/ManualsTab'
-import LoginPage from "../pages/LoginPage"
-import RegisterPage from "../pages/RegisterPage"
+import { ManualsTab, LoginPage, RegisterPage, ContactPage, FAQPage, SettingsPage, UserPage, CompanyPage, DefaultPage } from '../pages'
 import { useState } from 'react'
 
 interface ContentAreaProps {
@@ -15,72 +13,25 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
 
     switch (activeTab) {
         case 'FAQ':
-            return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
-                    }}
-                >
-                    <h1>FAQ</h1>
-                    <h2>Coming Soon, Work in Progress</h2>
-                </div>
-            )
+            return (<FAQPage />)
 
         case 'Contact':
-            return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
-                    }}
-                >
-                    <h1>Contact Page</h1>
-                    <h2>Coming Soon, Work in Progress</h2>
-                </div>
-            )
+            return (<ContactPage />)
 
         case 'Manuals':
-            return (
-                <div
-                    style={{
-                        paddingTop: '20px',
-                    }}
-                >
-                    <ManualsTab initialManual={selectedManual} />
-                </div>
-            );
+            return ( <div style={{ paddingTop: '30px' }}> <ManualsTab initialManual={selectedManual} /> </div> );
+
+        case 'User':
+            return (<UserPage />)
+
+        case 'Company':
+            return (<CompanyPage />)
 
         case 'Settings':
-            return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
-                    }}
-                >
-                    <h1>Settings Page</h1>
-                    <h2>Coming Soon, Work in Progress</h2>
-                </div>
-            )
+            return (<SettingsPage />)
 
         case "Register":
-            return (
-                <RegisterPage
-                    onRegisterSuccess={() => {
-                        setActiveTab("Login") // after register, go to login page
-                    }}
-                />
-            )
+            return ( <RegisterPage onRegisterSuccess={() => { setActiveTab("Login") }} /> )
 
         case 'Login':
             return <LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />
@@ -102,19 +53,6 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
             )
 
         default:
-            return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
-                    }}
-                >
-                    <h1>HTV Service Tool</h1>
-                    <p>This should not be visible normally.</p>
-                </div>
-            )
+            return <DefaultPage />
     }
 }

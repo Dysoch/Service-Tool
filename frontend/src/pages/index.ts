@@ -1,0 +1,10 @@
+// src/pages/index.ts
+export { default as ManualsTab } from './ManualsTab'
+export { default as LoginPage } from './LoginPage'
+export { default as RegisterPage } from './RegisterPage'
+export { default as ContactPage } from './ContactPage'
+export { default as FAQPage } from './FAQPage'
+export { default as SettingsPage } from './SettingsPage'
+export { default as CompanyPage } from './CompanyPage'
+export { default as UserPage } from './UserPage'
+export { default as DefaultPage } from './DefaultPage'

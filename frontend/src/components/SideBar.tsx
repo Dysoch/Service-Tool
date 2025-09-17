@@ -15,6 +15,13 @@ export default function SideBar({ activeTab, onTabChange, isLoggedIn }: SideBarP
             (tab.visibleFor === 'all' || (isLoggedIn && tab.visibleFor === 'loggedIn') || (!isLoggedIn && tab.visibleFor === 'loggedOut'))
     )
 
+    // filter middle tabs based on login state
+    const middleTabs = tabs.filter(
+        (tab) =>
+            tab.section === 'middle' &&
+            (tab.visibleFor === 'all' || (isLoggedIn && tab.visibleFor === 'loggedIn') || (!isLoggedIn && tab.visibleFor === 'loggedOut'))
+    )
+
     // filter bottom tabs based on login state
     const bottomTabs = tabs.filter(
         (tab) =>
@@ -49,6 +56,7 @@ export default function SideBar({ activeTab, onTabChange, isLoggedIn }: SideBarP
     return (
         <div className="sidebar">
             <div>{topTabs.map(renderButton)}</div>
+            <div>{middleTabs.map(renderButton)}</div>
             <div>{bottomTabs.map(renderButton)}</div>
         </div>
     )
