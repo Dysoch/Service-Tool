@@ -6,16 +6,17 @@ type ManualsTabProps = {
 };
 
 export default function ManualsTab({ initialManual }: ManualsTabProps) {
+  const base = import.meta.env.BASE_URL
   const manuals = [
-    { name: "Hoofdsysteem", file: "/docs/hoofdsysteem.html" },
-    { name: "Hortitrack", file: "/docs/hortitrack.html" },
-    { name: "Kraan", file: "/docs/kraan.html" },
-    { name: "Lift", file: "/docs/lift.html" },
-    { name: "Lineair Robot", file: "/docs/lineair.html" },
-    { name: "Snel Gids", file: "/docs/snel-gids.html" },
-    { name: "Stapelaar", file: "/docs/stapelaar.html" },
-    { name: "Wasser 100gr", file: "/docs/wasser-100gr.html" },
-    { name: "Wasser 180gr", file: "/docs/wasser-180gr.html" },
+    { name: "Hoofdsysteem", file: `${base}docs/hoofdsysteem.html` },
+    { name: "Hortitrack", file: `${base}docs/hortitrack.html` },
+    { name: "Kraan", file: `${base}docs/kraan.html` },
+    { name: "Lift", file: `${base}docs/lift.html` },
+    { name: "Lineair Robot", file: `${base}docs/lineair.html` },
+    { name: "Snel Gids", file: `${base}docs/snel-gids.html` },
+    { name: "Stapelaar", file: `${base}docs/stapelaar.html` },
+    { name: "Wasser 100gr", file: `${base}docs/wasser-100gr.html` },
+    { name: "Wasser 180gr", file: `${base}docs/wasser-180gr.html` },
   ];
 
   // Find file by manual name OR fallback to first
