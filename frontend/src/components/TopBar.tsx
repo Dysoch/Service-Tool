@@ -7,15 +7,14 @@ export default function TopBar() {
         <div className="top-bar">
             <div>
                 <a href="https://htverboom.com" target="_blank">
-                    <img src="/HTV_icoontje_micro.png" />
+                <img src={`${import.meta.env.BASE_URL}HTV_icoontje_micro.png`} alt="HTV Icon" />
                 </a>
             </div>
             <div>
-                announcements variable zooi is wel leuk om ooit te hebben, soort van message van de dag, maar dan globaler dat iedereen  het kan lezen, in welke taal dan ook. geen idee hoe we dit gaan toepassen, maar komt vast goed. nou dat is mijn gezeur erover, laat ik maar weer eens verder gaan
+                Announcements TBD
             </div>
             <div>
-                welkom message. Zou zelfdemoeten worden als hier links, maarja, dit ziet er ook niet uit 
-                Gelukkig spreid het geleidelijk, maar nog niet helemaal goedcd
+                Welcome Message TBD
             </div>
             <div style={{ position: 'relative' }}>
                 <button
