@@ -3,8 +3,6 @@ import { supabase } from "../supabaseClient"
 
 // --- CONFIG ---
 const USE_DUMMY_AUTH = false // toggle for testing without Supabase
-const DUMMY_USERS: { email: string; password: string; clientId?: string }[] = []
-
 type RegisterPageProps = {
     onRegisterSuccess: () => void
 }
@@ -13,6 +11,9 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [langSet, setLanguage] = useState("");
     const [clientId, setClientId] = useState("")
     const [clients, setClients] = useState<{ id: string; name: string }[]>([])
     const [error, setError] = useState("")
@@ -43,34 +44,27 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
             return
         }
 
-        if (USE_DUMMY_AUTH) {
-            const exists = DUMMY_USERS.find((u) => u.email === email)
-            if (exists) {
-                setError("User already exists (dummy)")
-            } else {
-                DUMMY_USERS.push({ email, password, clientId })
-                setSuccess("Dummy account created! You can now log in.")
-                onRegisterSuccess()
+        // ✅ Real Supabase registration
+        const { error } = await supabase.auth.signUp({
+            email,
+            password,
+            options: {
+                data: {
+                    first_name: firstName,
+                    last_name: lastName,
+                    client_id: clientId,
+                    language: langSet
+                }
             }
-        } else {
-            // Real Supabase registration
-            const { data, error } = await supabase.auth.signUp({
-                email,
-                password,
-                options: {
-                    data: {
-                        client_id: clientId, // store selected client in auth.user metadata
-                    },
-                },
-            })
+        });
 
-            if (error) {
-                setError(error.message)
-            } else {
-                setSuccess("Account created! Please check your email to confirm.")
-                onRegisterSuccess()
-            }
+        if (error) {
+            setError(error.message)
+            return
         }
+
+        setSuccess("Account created! You can now Login, but your account has to be validated by the admin before you can use it")
+        onRegisterSuccess()
     }
 
     return (
@@ -150,9 +144,55 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                     />
                 </div>
 
+                {/* First Name */}
+                <div style={{ marginBottom: "15px", textAlign: "left" }}>
+                    <label style={{ display: "block", marginBottom: "5px" }}>First Name:</label>
+                    <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                        style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #555", backgroundColor: "#2c2c2c", color: "white" }}
+                    />
+                </div>
+
+                {/* Last Name */}
+                <div style={{ marginBottom: "15px", textAlign: "left" }}>
+                    <label style={{ display: "block", marginBottom: "5px" }}>Last Name:</label>
+                    <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
+                        style={{ width: "100%", padding: "8px", borderRadius: "4px", border: "1px solid #555", backgroundColor: "#2c2c2c", color: "white" }}
+                    />
+                </div>
+
+                {/* Language */}
+                <div style={{ marginBottom: "15px", textAlign: "left" }}>
+                    <label style={{ display: "block", marginBottom: "5px" }}>Language:</label>
+                    <select
+                        value={langSet ?? "en"}
+                        onChange={(e) => setLanguage(e.target.value)}
+                        required
+                        style={{
+                            width: "100%",
+                            padding: "8px",
+                            borderRadius: "4px",
+                            border: "1px solid #555",
+                            backgroundColor: "#2c2c2c",
+                            color: "white",
+                        }}
+                    >
+                        <option key="nl" value="nl">Dutch</option>
+                        <option key="en" value="en">English</option>
+                        <option key="pl" value="pl">Polish</option>
+                    </select>
+                </div>
+
                 {/* Client dropdown */}
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
-                    <label style={{ display: "block", marginBottom: "5px" }}>Client:</label>
+                    <label style={{ display: "block", marginBottom: "5px" }}>Company:</label>
                     <select
                         value={clientId}
                         onChange={(e) => setClientId(e.target.value)}
