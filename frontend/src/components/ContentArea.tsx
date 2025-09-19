@@ -20,6 +20,7 @@ export default function ContentArea({ activeTab, user, setUser, setActiveTab }: 
         case 'Contact':
             return <ContactPage />;
         case 'Manuals':
+            if (!user) {}
             return <div style={{ paddingTop: '30px' }}><ManualsTab /></div>;
         case 'User':
             return <UserPage />;
