@@ -1,5 +1,7 @@
+import { t } from "../types/locale";
 
-export default function SettingsPage({}) {
+export default function SettingsPage({ }) {
+    const lang = "nl"; // later: read from user/client settings
 
     return (
         <div
@@ -11,8 +13,8 @@ export default function SettingsPage({}) {
                 boxSizing: 'border-box',
             }}
         >
-            <h1>Settings Page</h1>
-            <h2>Coming Soon, Work in Progress</h2>
+            <h1>{t(lang, "default.title")}</h1>
+            <p>{t(lang, "default.empty")}</p>
         </div>
     )
 }

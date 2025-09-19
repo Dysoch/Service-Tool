@@ -1,0 +1,10 @@
+{
+    "manuals": {
+        "title": "Manuals",
+        "empty": "No manuals available."
+    },
+    "default": {
+        "title": "WIP",
+        "empty": "Coming Soon, Work in Progress"
+    }
+}
