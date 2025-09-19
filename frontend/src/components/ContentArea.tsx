@@ -1,61 +1,60 @@
-import type { TabType } from '../types/tabs'
-import { ManualsTab, LoginPage, RegisterPage, ContactPage, FAQPage, SettingsPage, UserPage, CompanyPage, DefaultPage } from '../pages'
-import { useState } from 'react'
+import type { TabType } from '../types/tabs';
+import { ManualsTab, LoginPage, RegisterPage, ContactPage, FAQPage, SettingsPage, UserPage, CompanyPage, DefaultPage } from '../pages';
 import { t } from "../types/locale";
 import { useLanguage } from "../context/LanguageContext";
+import { supabase } from "../supabaseClient";
 
 interface ContentAreaProps {
-    activeTab: TabType
-    setIsLoggedIn: (val: boolean) => void
+    activeTab: TabType;
+    user: any | null;
+    setUser: (user: any | null) => void;
+    setActiveTab: (tab: TabType) => void;
 }
 
-export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaProps) {
-    const [selectedManual] = useState<string | undefined>(undefined);
-    const [_, setActiveTab] = useState<TabType>('Login')
+export default function ContentArea({ activeTab, user, setUser, setActiveTab }: ContentAreaProps) {
     const { lang } = useLanguage();
 
     switch (activeTab) {
         case 'FAQ':
-            return (<FAQPage />)
-
+            return <FAQPage />;
         case 'Contact':
-            return (<ContactPage />)
-
+            return <ContactPage />;
         case 'Manuals':
-            return ( <div style={{ paddingTop: '30px' }}> <ManualsTab initialManual={selectedManual} /> </div> );
-
+            return <div style={{ paddingTop: '30px' }}><ManualsTab /></div>;
         case 'User':
-            return (<UserPage />)
-
+            return <UserPage />;
         case 'Company':
-            return (<CompanyPage />)
-
+            return <CompanyPage />;
         case 'Settings':
-            return (<SettingsPage />)
-
-        case "Register":
-            return ( <RegisterPage onRegisterSuccess={() => { setActiveTab("Login") }} /> )
-
+            return <SettingsPage />;
+        case 'Register':
+            return <RegisterPage onRegisterSuccess={() => setActiveTab('Login')} />;
         case 'Login':
-            return <LoginPage onLoginSuccess={() => setIsLoggedIn(true)} />
-
+            return <LoginPage onLoginSuccess={async () => {
+                const { data: { user } } = await supabase.auth.getUser();
+                setUser(user);
+                setActiveTab('Manuals');
+            }} />;
         case 'Logout':
             return (
-                <div
-                    style={{
-                        padding: '20px',
-                        width: '100%',
-                        maxWidth: '1024px', // max width for large screens
-                        margin: '0 auto',   // center horizontally
-                        boxSizing: 'border-box',
-                    }}
-                >
+                <div style={{
+                    padding: '20px',
+                    width: '100%',
+                    maxWidth: '1024px',
+                    margin: '0 auto',
+                    boxSizing: 'border-box',
+                }}>
                     <h1>{t(lang, "logout.logout")}</h1>
-                    <button onClick={() => setIsLoggedIn(false)}>{t(lang, "logout.confirm")}</button>
+                    <button onClick={async () => {
+                        await supabase.auth.signOut();
+                        setUser(null);
+                        setActiveTab('Login');
+                    }}>
+                        {t(lang, "logout.confirm")}
+                    </button>
                 </div>
-            )
-
+            );
         default:
-            return <DefaultPage />
+            return <DefaultPage />;
     }
 }

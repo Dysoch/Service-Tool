@@ -1,60 +1,75 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
 import ContentArea from "./components/ContentArea";
 import type { TabType } from "./types/tabs";
 import { supabase } from "./supabaseClient";
-import { LanguageProvider } from "./context/LanguageContext"
-import './App.css'
+import { LanguageProvider } from "./context/LanguageContext";
+import './App.css';
 
 function App() {
-  const [user, setUser] = useState<any>(null); // supabase user object
-  const [activeTab, setActiveTab] = useState<TabType>('Login')
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [user, setUser] = useState<any>(null); // Supabase user object
+  const [activeTab, setActiveTab] = useState<TabType>('Login');
 
   useEffect(() => {
     // Check current session
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) {
-        setUser(data.session.user);
-        setIsLoggedIn(true);
-      }
+      setUser(data.session?.user ?? null);
+      if (data.session) setActiveTab('Manuals'); // default tab for logged-in users
     });
 
-    // Listen for login/logout
+    // Listen for login/logout events
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
-      setIsLoggedIn(!!session);
+      setActiveTab(session ? 'Manuals' : 'Login');
     });
 
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+    return () => authListener.subscription.unsubscribe();
   }, []);
 
-  // Actual content. Dynamically obviously
   return (
     <>
       {user ? (
-        <LanguageProvider userId={user?.id ?? ""}>
-          <TopBar />
+        <LanguageProvider userId={user.id}>
+          <TopBar
+            isLoggedIn={!!user}
+          />
           <div className="app-container">
             <SideBar
               activeTab={activeTab}
               onTabChange={setActiveTab}
-              isLoggedIn={isLoggedIn}
+              isLoggedIn={!!user}
             />
             <div className="content-area">
-              <ContentArea activeTab={activeTab} setIsLoggedIn={setIsLoggedIn} />
+              <ContentArea
+                activeTab={activeTab}
+                user={user}
+                setUser={setUser}
+                setActiveTab={setActiveTab}
+              />
             </div>
           </div>
         </LanguageProvider>
       ) : (
-        // Not logged in → just render login/register
-        <ContentArea activeTab={activeTab} setIsLoggedIn={setIsLoggedIn} />
+        <>
+          <TopBar
+            isLoggedIn={false}
+          />
+          <ContentArea
+            activeTab={activeTab}
+            user={null}
+            setUser={setUser}
+            setActiveTab={setActiveTab}
+          />
+          <SideBar
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            isLoggedIn={false}
+          />
+        </>
       )}
     </>
   );
 }
 
-export default App
+export default App;

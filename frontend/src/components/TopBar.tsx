@@ -2,7 +2,12 @@
 import { useLanguage } from "../context/LanguageContext";
 import { t } from "../types/locale";
 
-export default function TopBar() {
+interface TopBarProps {
+    isLoggedIn: boolean
+}
+
+
+export default function TopBar({ isLoggedIn }: TopBarProps) {
     //const [showDropdown, setShowDropdown] = useState(false);
     const { lang, setLang } = useLanguage();
 
@@ -16,18 +21,20 @@ export default function TopBar() {
             <div>{t(lang, "topbar.announcement")}</div>
             <div>{t(lang, "topbar.welcome")}</div>
 
-            <label>
-                {t(lang, "topbar.language")}:
-                <select
-                    value={lang}
-                    onChange={(e) => setLang(e.target.value)}
-                    style={{ marginLeft: "10px" }}
-                >
-                    <option value="en">{t(lang, "language.english")}</option>
-                    <option value="nl">{t(lang, "language.dutch")}</option>
-                    <option value="pl">{t(lang, "language.polish")}</option>
-                </select>
-            </label>
+            {isLoggedIn && (
+                <label>
+                    {t(lang, "topbar.language")}:
+                    <select
+                        value={lang}
+                        onChange={(e) => setLang(e.target.value)}
+                        style={{ marginLeft: "10px" }}
+                    >
+                        <option value="en">{t(lang, "language.english")}</option>
+                        <option value="nl">{t(lang, "language.dutch")}</option>
+                        <option value="pl">{t(lang, "language.polish")}</option>
+                    </select>
+                </label>
+            )}
 
             {/*
             <div style={{ position: 'relative' }}>
