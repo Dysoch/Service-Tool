@@ -1,6 +1,8 @@
 // src/pages/LoginPage.tsx
 import { useState } from "react"
 import { supabase } from "../supabaseClient"
+import { t } from "../types/locale";
+import { useLanguage } from "../context/LanguageContext";
 
 type LoginPageProps = {
   onLoginSuccess: () => void
@@ -17,6 +19,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const { lang } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -67,7 +70,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px", textAlign: "left" }}>
           <label style={{ display: "block", marginBottom: "5px" }}>
-            Email:
+            {t(lang, "login.email")}:
           </label>
           <input
             type="email"
@@ -85,7 +88,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
         </div>
         <div style={{ marginBottom: "15px", textAlign: "left" }}>
           <label style={{ display: "block", marginBottom: "5px" }}>
-            Password:
+            {t(lang, "login.password")}:
           </label>
           <input
             type="password"
@@ -117,7 +120,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
             cursor: "pointer",
           }}
         >
-          Login
+          {t(lang, "login.login")}
         </button>
       </form>
     </div>

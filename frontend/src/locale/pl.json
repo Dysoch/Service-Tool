@@ -1,0 +1,55 @@
+{
+    "manuals": {
+        "title": "Instrukcje",
+        "empty": "Brak dostępnych instrukcji."
+    },
+    "default": {
+        "title": "W trakcie prac",
+        "empty": "Wkrótce dostępne, prace w toku"
+    },
+    "topbar": {
+        "announcement": "Cała ta strona jest obecnie w fazie rozwoju. Może zawierać błędy!",
+        "welcome": "Witamy w narzędziu serwisowym HT Verboom!",
+        "language": "Język"
+    },
+    "language": {
+        "english": "Angielski",
+        "dutch": "Holenderski",
+        "polish": "Polski"
+    },
+    "sidebar": {
+        "faq": "FAQ",
+        "contact": "Kontakt",
+        "manuals": "Instrukcje",
+        "userinfo": "Informacje o użytkowniku",
+        "companyinfo": "Informacje o firmie",
+        "settings": "Ustawienia",
+        "login": "Zaloguj się",
+        "logout": "Wyloguj się",
+        "register": "Zarejestruj się"
+    },
+    "system": {
+        "title": "W trakcie prac",
+        "empty": "Wkrótce dostępne, prace w toku"
+    },
+    "logout": {
+        "logout": "Wyloguj się",
+        "confirm": "Potwierdź wylogowanie"
+    },
+    "login": {
+        "email": "E-mail",
+        "password": "Hasło",
+        "login": "Zaloguj się"
+    },
+    "register": {
+        "email": "E-mail",
+        "password1": "Hasło",
+        "password2": "Potwierdź hasło",
+        "register": "Zarejestruj się",
+        "name1": "Imię",
+        "name2": "Nazwisko",
+        "language": "Język",
+        "company": "Firma",
+        "success": "Konto zostało utworzone! Możesz się teraz zalogować, ale twoje konto musi zostać zatwierdzone przez administratora zanim będziesz mógł z niego korzystać"
+    }
+}

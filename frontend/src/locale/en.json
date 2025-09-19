@@ -6,5 +6,50 @@
     "default": {
         "title": "WIP",
         "empty": "Coming Soon, Work in Progress"
+    },
+    "topbar": {
+        "announcement": "This entire site is currently being developed. May contain bugs!",
+        "welcome": "Welcome to the HT Verboom Service Tool!",
+        "language": "Language"
+    },
+    "language": {
+        "english": "English",
+        "dutch": "Dutch",
+        "polish": "Polish"
+    },
+    "sidebar": {
+        "faq": "FAQ",
+        "contact": "Contact",
+        "manuals": "Manuals",
+        "userinfo": "User Info",
+        "companyinfo": "Company Info",
+        "settings": "Settings",
+        "login": "Login",
+        "logout": "Logout",
+        "register": "Register"
+    },
+    "system": {
+        "title": "WIP",
+        "empty": "Coming Soon, Work in Progress"
+    },
+    "logout": {
+        "logout": "Logout",
+        "confirm": "Confirm Logout"
+    },
+    "login": {
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
+    "register": {
+        "email": "Email",
+        "password1": "Password",
+        "password2": "Confirm Password",
+        "register": "Register",
+        "name1": "First Name",
+        "name2": "Last Name",
+        "language": "Language",
+        "company": "Company",
+        "success": "Account created! You can now Login, but your account has to be validated by the admin before you can use it"
     }
 }

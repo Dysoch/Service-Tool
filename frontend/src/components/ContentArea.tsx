@@ -1,6 +1,8 @@
 import type { TabType } from '../types/tabs'
 import { ManualsTab, LoginPage, RegisterPage, ContactPage, FAQPage, SettingsPage, UserPage, CompanyPage, DefaultPage } from '../pages'
 import { useState } from 'react'
+import { t } from "../types/locale";
+import { useLanguage } from "../context/LanguageContext";
 
 interface ContentAreaProps {
     activeTab: TabType
@@ -10,6 +12,7 @@ interface ContentAreaProps {
 export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaProps) {
     const [selectedManual] = useState<string | undefined>(undefined);
     const [_, setActiveTab] = useState<TabType>('Login')
+    const { lang } = useLanguage();
 
     switch (activeTab) {
         case 'FAQ':
@@ -47,8 +50,8 @@ export default function ContentArea({ activeTab, setIsLoggedIn }: ContentAreaPro
                         boxSizing: 'border-box',
                     }}
                 >
-                    <h1>Logout</h1>
-                    <button onClick={() => setIsLoggedIn(false)}>Confirm Logout</button>
+                    <h1>{t(lang, "logout.logout")}</h1>
+                    <button onClick={() => setIsLoggedIn(false)}>{t(lang, "logout.confirm")}</button>
                 </div>
             )
 

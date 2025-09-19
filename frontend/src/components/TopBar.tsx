@@ -1,9 +1,9 @@
-import { useState } from "react";
+//import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { t } from "../types/locale";
 
 export default function TopBar() {
-    const [showDropdown, setShowDropdown] = useState(false);
+    //const [showDropdown, setShowDropdown] = useState(false);
     const { lang, setLang } = useLanguage();
 
     return (
@@ -13,13 +13,23 @@ export default function TopBar() {
                     <img src={`${import.meta.env.BASE_URL}HTV_icoontje_micro.png`} alt="HTV Icon" />
                 </a>
             </div>
-            <div>
-                Announcements TBD
-            </div>
-            <div>
-                Welcome Message TBD
-            </div>
+            <div>{t(lang, "topbar.announcement")}</div>
+            <div>{t(lang, "topbar.welcome")}</div>
 
+            <label>
+                {t(lang, "topbar.language")}:
+                <select
+                    value={lang}
+                    onChange={(e) => setLang(e.target.value)}
+                    style={{ marginLeft: "10px" }}
+                >
+                    <option value="en">{t(lang, "language.english")}</option>
+                    <option value="nl">{t(lang, "language.dutch")}</option>
+                    <option value="pl">{t(lang, "language.polish")}</option>
+                </select>
+            </label>
+
+            {/*
             <div style={{ position: 'relative' }}>
                 <button
                     onClick={() => setShowDropdown(!showDropdown)}
@@ -90,8 +100,10 @@ export default function TopBar() {
                             🇵🇱
                         </button>
                     </div>
+                    
                 )}
             </div>
+            */}
         </div>
     );
 }

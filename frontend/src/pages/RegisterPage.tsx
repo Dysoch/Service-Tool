@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
-import { supabase } from "../supabaseClient"
+import { useState, useEffect } from "react";
+import { supabase } from "../supabaseClient";
+import { t } from "../types/locale";
+import { useLanguage } from "../context/LanguageContext";
 
 // --- CONFIG ---
 const USE_DUMMY_AUTH = false // toggle for testing without Supabase
@@ -18,6 +20,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
     const [clients, setClients] = useState<{ id: string; name: string }[]>([])
     const [error, setError] = useState("")
     const [success, setSuccess] = useState("")
+    const { lang } = useLanguage();
 
     // Fetch clients from Supabase
     useEffect(() => {
@@ -63,7 +66,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
             return
         }
 
-        setSuccess("Account created! You can now Login, but your account has to be validated by the admin before you can use it")
+        setSuccess(t(lang, "register.success"))
         onRegisterSuccess()
     }
 
@@ -88,7 +91,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                 {/* Email, Password, Confirm Password fields here (same as before) */}
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
                     <label style={{ display: "block", marginBottom: "5px" }}>
-                        Email:
+                        {t(lang, "register.email")}:
                     </label>
                     <input
                         type="email"
@@ -107,7 +110,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                 </div>
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
                     <label style={{ display: "block", marginBottom: "5px" }}>
-                        Password:
+                        {t(lang, "register.password1")}:
                     </label>
                     <input
                         type="password"
@@ -126,7 +129,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                 </div>
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
                     <label style={{ display: "block", marginBottom: "5px" }}>
-                        Confirm Password:
+                        {t(lang, "register.password2")}:
                     </label>
                     <input
                         type="password"
@@ -146,7 +149,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
 
                 {/* First Name */}
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
-                    <label style={{ display: "block", marginBottom: "5px" }}>First Name:</label>
+                    <label style={{ display: "block", marginBottom: "5px" }}>{t(lang, "register.name1")}:</label>
                     <input
                         type="text"
                         value={firstName}
@@ -158,7 +161,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
 
                 {/* Last Name */}
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
-                    <label style={{ display: "block", marginBottom: "5px" }}>Last Name:</label>
+                    <label style={{ display: "block", marginBottom: "5px" }}>{t(lang, "register.name2")}:</label>
                     <input
                         type="text"
                         value={lastName}
@@ -170,7 +173,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
 
                 {/* Language */}
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
-                    <label style={{ display: "block", marginBottom: "5px" }}>Language:</label>
+                    <label style={{ display: "block", marginBottom: "5px" }}>{t(lang, "register.language")}:</label>
                     <select
                         value={langSet ?? "en"}
                         onChange={(e) => setLanguage(e.target.value)}
@@ -184,15 +187,15 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                             color: "white",
                         }}
                     >
-                        <option key="nl" value="nl">Dutch</option>
-                        <option key="en" value="en">English</option>
-                        <option key="pl" value="pl">Polish</option>
+                        <option key="nl" value="nl">{t(lang, "language.dutch")}</option>
+                        <option key="en" value="en">{t(lang, "language.english")}</option>
+                        <option key="pl" value="pl">{t(lang, "language.polish")}</option>
                     </select>
                 </div>
 
                 {/* Client dropdown */}
                 <div style={{ marginBottom: "15px", textAlign: "left" }}>
-                    <label style={{ display: "block", marginBottom: "5px" }}>Company:</label>
+                    <label style={{ display: "block", marginBottom: "5px" }}>{t(lang, "register.company")}:</label>
                     <select
                         value={clientId}
                         onChange={(e) => setClientId(e.target.value)}
@@ -229,7 +232,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                         cursor: "pointer",
                     }}
                 >
-                    Register
+                    {t(lang, "register.register")}
                 </button>
             </form>
         </div>

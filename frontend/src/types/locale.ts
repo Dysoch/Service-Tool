@@ -1,12 +1,12 @@
 import en from "../locale/en.json";
 import nl from "../locale/nl.json";
-
-type LocaleKey = "en" | "nl";
+import pl from "../locale/pl.json";
 
 // Register all available locales here
-const locales: Record<LocaleKey, any> = { en, nl };
+const locales: Record<string, any> = { en, nl, pl };
 
-export function t(lang: LocaleKey, path: string): string {
+//export function t(lang: LocaleKey, path: string): string {
+export function t(lang: string, path: string): string {
   const keys = path.split(".");
 
   // Try requested language

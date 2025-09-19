@@ -1,5 +1,7 @@
 import { tabs } from '../types/tabs'
 import type { TabType } from '../types/tabs'
+import { t } from "../types/locale";
+import { useLanguage } from "../context/LanguageContext";
 
 interface SideBarProps {
     activeTab: TabType
@@ -8,6 +10,7 @@ interface SideBarProps {
 }
 
 export default function SideBar({ activeTab, onTabChange, isLoggedIn }: SideBarProps) {
+    const { lang } = useLanguage();
     // filter top tabs based on login state
     const topTabs = tabs.filter(
         (tab) =>
@@ -48,8 +51,9 @@ export default function SideBar({ activeTab, onTabChange, isLoggedIn }: SideBarP
                 boxShadow: activeTab === tab.id ? '0 0 12px rgba(250, 184, 1, 0.7)' : 'none',
             }}
         >
-            <span>{tab.icon}</span>
-            {tab.label}
+            {/* <span>{tab.icon}</span> */}
+            {/* {tab.label} */}
+            {t(lang, tab.label)}
         </button>
     )
 
