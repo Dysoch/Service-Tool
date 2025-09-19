@@ -1,9 +1,10 @@
 import en from "../locale/en.json";
 import nl from "../locale/nl.json";
 import pl from "../locale/pl.json";
+import fr from "../locale/fr.json";
 
 // Register all available locales here
-const locales: Record<string, any> = { en, nl, pl };
+const locales: Record<string, any> = { en, nl, pl, fr };
 
 //export function t(lang: LocaleKey, path: string): string {
 export function t(lang: string, path: string): string {

@@ -32,6 +32,7 @@ export default function TopBar({ isLoggedIn }: TopBarProps) {
                         <option value="en">{t(lang, "language.english")}</option>
                         <option value="nl">{t(lang, "language.dutch")}</option>
                         <option value="pl">{t(lang, "language.polish")}</option>
+                        <option value="fr">{t(lang, "language.french")}</option>
                     </select>
                 </label>
             )}

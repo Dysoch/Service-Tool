@@ -1,0 +1,56 @@
+{
+    "manuals": {
+        "title": "Manuels",
+        "empty": "Aucun manuel disponible."
+    },
+    "default": {
+        "title": "En cours",
+        "empty": "Bientôt disponible, en cours de développement"
+    },
+    "topbar": {
+        "announcement": "Ce site est actuellement en développement. Peut contenir des erreurs !",
+        "welcome": "Bienvenue dans l’outil de service HT Verboom !",
+        "language": "Langue"
+    },
+    "language": {
+        "english": "Anglais",
+        "dutch": "Néerlandais",
+        "polish": "Polonais",
+        "french": "Francais"
+    },
+    "sidebar": {
+        "faq": "FAQ",
+        "contact": "Contact",
+        "manuals": "Manuels",
+        "userinfo": "Informations utilisateur",
+        "companyinfo": "Informations sur l’entreprise",
+        "settings": "Paramètres",
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "register": "S’inscrire"
+    },
+    "system": {
+        "title": "En cours",
+        "empty": "Bientôt disponible, en cours de développement"
+    },
+    "logout": {
+        "logout": "Déconnexion",
+        "confirm": "Confirmer la déconnexion"
+    },
+    "login": {
+        "email": "E-mail",
+        "password": "Mot de passe",
+        "login": "Connexion"
+    },
+    "register": {
+        "email": "E-mail",
+        "password1": "Mot de passe",
+        "password2": "Confirmer le mot de passe",
+        "register": "S’inscrire",
+        "name1": "Prénom",
+        "name2": "Nom",
+        "language": "Langue",
+        "company": "Entreprise",
+        "success": "Compte créé ! Vous pouvez maintenant vous connecter, mais votre compte doit d’abord être validé par l’administrateur avant de pouvoir être utilisé"
+    }
+}

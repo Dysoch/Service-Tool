@@ -190,6 +190,7 @@ export default function RegisterPage({ onRegisterSuccess }: RegisterPageProps) {
                         <option key="nl" value="nl">{t(lang, "language.dutch")}</option>
                         <option key="en" value="en">{t(lang, "language.english")}</option>
                         <option key="pl" value="pl">{t(lang, "language.polish")}</option>
+                        <option key="fr" value="pl">{t(lang, "language.french")}</option>
                     </select>
                 </div>
 
